@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.ibm.assessment.orderdetails.controller.DetailPage"
+    controllerName="com.ibm.assesment.orderdetails.controller.DetailPage"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -12,29 +12,29 @@
         <customHeader>
             <Bar>
                 <contentLeft>
-                    <Button icon="sap-icon://home" press="onHomePress"/>
+                    <!-- Home button added here -->
+                    <Button icon="sap-icon://home" press="onPressHome" />
                 </contentLeft>
                 <contentMiddle>
                     <Title
-                        text="Market Dashboard"
+                        text="{i18n>MarketDashboard}"
                         class="centeredTitle"
                     />
                 </contentMiddle>
             </Bar>
         </customHeader>
-
         <content>
             <Button
-                text="Create Order"
+                text="{i18n>CreateOrder}"
                 class="create_order_btn"
                 press="createOrder"
             />
             <TabContainer class="detail_page_tab_cont" id="detailpage_tab_cont">
                 <items>
-                    <TabContainerItem name="All" key="All"></TabContainerItem>
-                    <TabContainerItem name="Completed" key="Completed"></TabContainerItem>
-                    <TabContainerItem name="Inprogress" key="Inprogress"></TabContainerItem>
-                    <TabContainerItem name="Blocked" key="Blocked"></TabContainerItem>
+                    <TabContainerItem name="{i18n>All}" key="All"></TabContainerItem>
+                    <TabContainerItem name="{i18n>Completed}" key="Completed"></TabContainerItem>
+                    <TabContainerItem name="{i18n>Inprogress}" key="Inprogress"></TabContainerItem>
+                    <TabContainerItem name="{i18n>Blocked}" key="Blocked"></TabContainerItem>
                 </items>
             </TabContainer>
             <Table
@@ -45,22 +45,22 @@
             >
                 <columns>
                     <Column width="12em">
-                        <Text text="Id" />
+                        <Text text="{i18n>Id}" />
                     </Column>
                     <Column>
-                        <Text text="SalesOrder Number" />
+                        <Text text="{i18n>SalesOrderNumber}" />
                     </Column>
                     <Column>
-                        <Text text="SalesOrder Type" />
+                        <Text text="{i18n>SalesOrderType}" />
                     </Column>
                     <Column>
-                        <Text text="Company" />
+                        <Text text="{i18n>Company}" />
                     </Column>
                     <Column>
-                        <Text text="Status" />
+                        <Text text="{i18n>Status}" />
                     </Column>
                     <Column>
-                        <Text text="Actions" />
+                        <Text text="{i18n>Actions}" />
                     </Column>
                 </columns>
                 <items>
@@ -74,7 +74,7 @@
                             <VBox class="edit_del_btns">
                                 <Button text="Edit" />
                                 <Button
-                                    text="Delete"
+                                    text="{i18n>Delete}"
                                     press="onDelete"
                                 />
                             </VBox>
@@ -93,19 +93,19 @@
                         <Text text="Id" />
                     </Column>
                     <Column>
-                        <Text text="PurchaseOrder Number" />
+                        <Text text="{i18n>PurchaseOrderNumber}" />
                     </Column>
                     <Column>
-                        <Text text="PurchaseOrder Type" />
+                        <Text text="{i18n>PurchaseOrderType}" />
                     </Column>
                     <Column>
-                        <Text text="Company" />
+                        <Text text="{i18n>Company}" />
                     </Column>
                     <Column>
-                        <Text text="Status" />
+                        <Text text="{i18n>Status}" />
                     </Column>
                     <Column>
-                        <Text text="Actions" />
+                        <Text text="{i18n>Actions}" />
                     </Column>
                 </columns>
                 <items>

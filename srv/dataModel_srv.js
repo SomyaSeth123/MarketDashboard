@@ -1,13 +1,16 @@
 const MarketDashboardServices = {};
 
 const hana = require('@sap/hana-client');
+require('dotenv').config();
 
 // HANA database connection settings
 const connOptions = {
-    serverNode: 'fdd1fcaa-7efa-4a37-a054-580b428943cf.hana.trial-us10.hanacloud.ondemand.com:443',
-    UID: 'DBADMIN',
-    PWD: 'Sethsomya@12345'
+    serverNode: process.env.SERVERURL,
+    UID: process.env.UID,
+    PWD: process.env.PASSWORD
 };
+
+console.log("connOptions", connOptions);
 
 // Create a HANA client connection
 const conn = hana.createConnection();

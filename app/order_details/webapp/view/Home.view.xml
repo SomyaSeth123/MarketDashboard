@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.ibm.assessment.orderdetails.controller.Home"
+    controllerName="com.ibm.assesment.orderdetails.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -13,7 +13,7 @@
             <Bar>
                 <contentMiddle>
                     <Title
-                        text="Market Dashboard"
+                        text="{i18n>MarketDashboardText}"
                         class="centeredTitle"
                     />
                 </contentMiddle>
@@ -33,7 +33,7 @@
                         >
                             <items>
                                 <TabContainerItem
-                                    name="Sales Order"
+                                    name="{i18n>SalesOrder}"
                                     class="sales_order"
                                 >
                                     <content>
@@ -44,32 +44,32 @@
                                             <items>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Completed"
+                                                    header="{i18n>Completed}"
                                                     press="onClickTile($event, 'sales', 'Completed')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 100"
+                                                        footer="{i18n>Total-10}"
                                                     />
                                                 </GenericTile>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Inprogress"
+                                                    header="{i18n>Inprogress}"
                                                     press="onClickTile($event, 'sales', 'Inprogress')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 70"
+                                                        footer="{i18n>Total-20}"
                                                     />
                                                 </GenericTile>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Blocked"
+                                                    header="{i18n>Blocked}"
                                                     press="onClickTile($event, 'sales', 'Blocked')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 40"
+                                                        footer="{i18n>Total-30}"
                                                     />
                                                 </GenericTile>
                                             </items>
@@ -77,7 +77,7 @@
                                     </content>
                                 </TabContainerItem>
                                 <TabContainerItem
-                                    name="Purchase Order"
+                                    name="{i18n>PurchaseOrder}"
                                     id="purchase_order"
                                 >
                                     <content>
@@ -85,32 +85,32 @@
                                             <items>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Completed"
+                                                    header="{i18n>Completed}"
                                                     press="onClickTile($event, 'purchase', 'Completed')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 80"
+                                                        footer="{i18n>Total-40}"
                                                     />
                                                 </GenericTile>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Inprogress"
+                                                    header="{i18n>Inprogress}"
                                                     press="onClickTile($event, 'purchase', 'Inprogress')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 40"
+                                                        footer="{i18n>Total-50}"
                                                     />
                                                 </GenericTile>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                                                    header="Blocked"
+                                                    header="{i18n>Blocked}"
                                                     press="onClickTile($event, 'purchase', 'Blocked')"
                                                     frameType="OneByHalf"
                                                 >
                                                     <TileContent
-                                                        footer="Total - 10"
+                                                        footer="{i18n>Total-60}"
                                                     />
                                                 </GenericTile>
                                             </items>
@@ -127,21 +127,21 @@
                     >
                         <!-- Alert List -->
                         <List
-                            headerText="Top 5 Alerts"
+                            headerText="{i18n>Top5Alerts}"
                             mode="SingleSelectMaster"
                         >
                             <items>
                                 <!-- Define your top 5 alerts here -->
-                                <StandardListItem title="Order with id 56 is blocked with type sales" />
-                                <StandardListItem title="Order with id 56 is blocked with type sales" />
-                                <StandardListItem title="Order with id 56 is blocked with type sales" />
-                                <StandardListItem title="Alert 4" />
-                                <StandardListItem title="Alert 5" />
+                                <StandardListItem title="{i18n>Alert1}" />
+                                <StandardListItem title="{i18n>Alert2}" />
+                                <StandardListItem title="{i18n>Alert3}" />
+                                <StandardListItem title="{i18n>Alert4}" />
+                                <StandardListItem title="{i18n>Alert5}" />
                             </items>
                         </List>
                         <!-- View All Button -->
                         <Button
-                            text="View All"
+                            text="{i18n>ViewAll}"
                             class="view_all_btn"
                             press="onPressViewAll"
                         />

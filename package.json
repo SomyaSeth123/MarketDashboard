@@ -10,6 +10,7 @@
     "@sap/cds-hana": "^2",
     "@sap/hana-client": "^2.19.21",
     "@sap/xssec": "^3",
+    "dotenv": "^16.4.5",
     "express": "^4"
   },
   "devDependencies": {

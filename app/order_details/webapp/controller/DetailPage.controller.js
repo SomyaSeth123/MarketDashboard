@@ -1,12 +1,10 @@
-// import { createEntity, readEntity } from '../../../../srv/dataModel_srv';
-
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "jquery",
     "sap/m/MessageToast",
     "sap/ui/model/odata/v4/ODataModel",
-    "../../../../srv/dataModel_srv",
+    // "../../../../srv/dataModel_srv",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller

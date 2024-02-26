@@ -1,0 +1,34 @@
+<mvc:View
+    controllerName="com.ibm.assessment.orderdetails.controller.AlertPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="AlertPage"
+        class="customPage"
+    >
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://home" press="onHomePress"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title
+                        text="Market Dashboard"
+                        class="centeredTitle"
+                    />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <content>
+            <List
+                headerText="Alert Messages"
+                headerLevel="H2"
+            >
+                <StandardListItem title="Alert Message"/>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

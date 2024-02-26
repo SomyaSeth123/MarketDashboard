@@ -1,0 +1,123 @@
+/* .centeredTitle {
+    text-align: center;
+    width: 100%;
+    height: 4rem;
+} */
+
+
+.sapMBar {
+    height: 100rem; /* Set the desired height */
+}
+
+.centeredTitle {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
+    height: 100%; /* Ensure the title takes the full height of the custom header */
+}
+.alert_box {
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+.flexbox_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+}
+.flexbox_content>*{
+    margin: 1rem;
+}
+.tab_cont{
+    height: 100vh;
+}
+#panel{
+    z-index: 10;
+}
+.sales_order{
+    height: 100vh;
+    margin: 1rem;
+}
+.sapUiResponsiveMargin {
+    width: fit-content;
+    padding: 0.1rem;
+    cursor: pointer;
+}
+.panel_cont_1 {
+    background-color: green;
+}
+.panel_cont_2{
+    background-color: yellow;
+}
+.panel_cont_3{
+    background-color: rgb(214, 71, 71);
+}
+.sales_order_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.view_all_btn{
+    color: blue;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+.sapMPanelBGTranslucent{
+    background-color: transparent;
+}
+.sales_order_content_text{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.status_text{
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.count_text{
+    font-weight: bold;
+    cursor: pointer;
+}
+.sapMTSItemCloseBtnCnt{
+    display: none !important;
+}
+.create_order_btn{
+    margin-left: 90%;
+}
+.create_dialog{
+    padding: 1rem;
+    background-color: white;
+}
+.dialog_btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.create_dialog_input_fields{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.edit_del_btns{
+    display: flex;
+    flex-direction: row;
+}
+.edit_del_btns>*{
+    margin-right: 1rem;
+}
+.segmented_btn{
+    width: 100%;
+}
+.detail_page_tab_cont{
+    margin: 0.5rem;
+    margin-top: 0;
+}
+.sap-icon-home {
+    font-size: 24px;
+    color: blue;
+}

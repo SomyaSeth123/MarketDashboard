@@ -1,0 +1,2 @@
+id,salesOrderNumber,salesOrderType,company,status
+1,3000000001,Rush_Order,Adidas,Blocked

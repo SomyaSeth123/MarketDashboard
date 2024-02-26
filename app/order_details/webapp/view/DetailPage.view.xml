@@ -1,0 +1,175 @@
+<mvc:View
+    controllerName="com.ibm.assessment.orderdetails.controller.DetailPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="detailPage"
+        class="customPage"
+    >
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://home" press="onHomePress"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title
+                        text="Market Dashboard"
+                        class="centeredTitle"
+                    />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <Button
+                text="Create Order"
+                class="create_order_btn"
+                press="createOrder"
+            />
+            <TabContainer class="detail_page_tab_cont" id="detailpage_tab_cont">
+                <items>
+                    <TabContainerItem name="All" key="All"></TabContainerItem>
+                    <TabContainerItem name="Completed" key="Completed"></TabContainerItem>
+                    <TabContainerItem name="Inprogress" key="Inprogress"></TabContainerItem>
+                    <TabContainerItem name="Blocked" key="Blocked"></TabContainerItem>
+                </items>
+            </TabContainer>
+            <Table
+                id="salesOrderTable"
+                inset="false"
+                visible="{viewModel>/isSales}"
+                items="{mainModel>/SalesOrder}"
+            >
+                <columns>
+                    <Column width="12em">
+                        <Text text="Id" />
+                    </Column>
+                    <Column>
+                        <Text text="SalesOrder Number" />
+                    </Column>
+                    <Column>
+                        <Text text="SalesOrder Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Company" />
+                    </Column>
+                    <Column>
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{mainModel>id}" />
+                            <Text text="{mainModel>salesOrderNumber}" />
+                            <Text text="{mainModel>salesOrderType}" />
+                            <Text text="{mainModel>company}" />
+                            <Text text="{mainModel>status}" />
+                            <VBox class="edit_del_btns">
+                                <Button text="Edit" />
+                                <Button
+                                    text="Delete"
+                                    press="onDelete"
+                                />
+                            </VBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Table
+                id="purchaseOrderTable"
+                inset="false"
+                visible="{= ${viewModel>/isSales} === false}"
+                items="{mainModel>/PurchaseOrder}"
+            >
+                <columns>
+                    <Column width="12em">
+                        <Text text="Id" />
+                    </Column>
+                    <Column>
+                        <Text text="PurchaseOrder Number" />
+                    </Column>
+                    <Column>
+                        <Text text="PurchaseOrder Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Company" />
+                    </Column>
+                    <Column>
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{mainModel>id}" />
+                            <Text text="{mainModel>purchaseOrderNumber}" />
+                            <Text text="{mainModel>purchaseOrderType}" />
+                            <Text text="{mainModel>company}" />
+                            <Text text="{mainModel>status}" />
+                            <VBox class="edit_del_btns">
+                                <Button text="Edit" />
+                                <Button
+                                    text="Delete"
+                                    press="onDelete"
+                                />
+                            </VBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Dialog
+                title="Create Item"
+                id="createDialog"
+                class="create_dialog"
+            >
+                <VBox class="create_dialog_input_fields">
+                    <Label text="Id" />
+                    <Input
+                        placeholder="Enter Sales Order Number"
+                        id="id_"
+                    />
+                    <Label text="Sales Order Number" />
+                    <Input
+                        placeholder="Enter Sales Order Number"
+                        id="input1"
+                    />
+                    <Label text="Sales Order Type" />
+                    <Input
+                        placeholder="Enter Sales Order Type"
+                        id="input2"
+                    />
+                    <Label text="Company" />
+                    <Input
+                        placeholder="Enter Company"
+                        id="input3"
+                    />
+                    <Label text="Status" />
+                    <Input
+                        placeholder="Enter Status"
+                        id="input4"
+                    />
+                    <VBox class="dialog_btns">
+                        <Button
+                            text="Submit"
+                            press="onSubmit"
+                        />
+                        <Button
+                            text="Cancel"
+                            press="onCancel"
+                        />
+                    </VBox>
+                </VBox>
+            </Dialog>
+        </content>
+    </Page>
+</mvc:View>

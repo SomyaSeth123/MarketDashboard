@@ -1,0 +1,55 @@
+{
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.SalesOrderAdmin",
+      "description": "SalesOrderAdmin"
+    },
+    {
+      "name": "$XSAPPNAME.SalesOrderViewer",
+      "description": "SalesOrderViewer"
+    },
+    {
+      "name": "$XSAPPNAME.PurchaseOrderAdmin",
+      "description": "PurchaseOrderAdmin"
+    },
+    {
+      "name": "$XSAPPNAME.PurchaseOrderViewer",
+      "description": "PurchaseOrderViewer"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "SalesOrderAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.SalesOrderAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "SalesOrderViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.SalesOrderViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PurchaseOrderAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.PurchaseOrderAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "PurchaseOrderViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.PurchaseOrderViewer"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

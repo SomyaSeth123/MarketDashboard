@@ -1,0 +1,153 @@
+<mvc:View
+    controllerName="com.ibm.assessment.orderdetails.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="page"
+        class="customPage"
+    >
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Title
+                        text="Market Dashboard"
+                        class="centeredTitle"
+                    />
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <content>
+            <FlexBox class="flexbox_content">
+                <items>
+                    <VBox
+                        width="70%"
+                        height="100%"
+                        class="alert_box"
+                    >
+                        <TabContainer
+                            id="myTabContainer"
+                            class="tab_cont"
+                        >
+                            <items>
+                                <TabContainerItem
+                                    name="Sales Order"
+                                    class="sales_order"
+                                >
+                                    <content>
+                                        <FlexBox
+                                            class="sales_order_content"
+                                            id="sales_order"
+                                        >
+                                            <items>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Completed"
+                                                    press="onClickTile($event, 'sales', 'Completed')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 100"
+                                                    />
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Inprogress"
+                                                    press="onClickTile($event, 'sales', 'Inprogress')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 70"
+                                                    />
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Blocked"
+                                                    press="onClickTile($event, 'sales', 'Blocked')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 40"
+                                                    />
+                                                </GenericTile>
+                                            </items>
+                                        </FlexBox>
+                                    </content>
+                                </TabContainerItem>
+                                <TabContainerItem
+                                    name="Purchase Order"
+                                    id="purchase_order"
+                                >
+                                    <content>
+                                        <FlexBox class="sales_order_content">
+                                            <items>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Completed"
+                                                    press="onClickTile($event, 'purchase', 'Completed')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 80"
+                                                    />
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Inprogress"
+                                                    press="onClickTile($event, 'purchase', 'Inprogress')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 40"
+                                                    />
+                                                </GenericTile>
+                                                <GenericTile
+                                                    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                                                    header="Blocked"
+                                                    press="onClickTile($event, 'purchase', 'Blocked')"
+                                                    frameType="OneByHalf"
+                                                >
+                                                    <TileContent
+                                                        footer="Total - 10"
+                                                    />
+                                                </GenericTile>
+                                            </items>
+                                        </FlexBox>
+                                    </content>
+                                </TabContainerItem>
+                            </items>
+                        </TabContainer>
+                    </VBox>
+                    <VBox
+                        width="30%"
+                        height="100%"
+                        class="alert_box"
+                    >
+                        <!-- Alert List -->
+                        <List
+                            headerText="Top 5 Alerts"
+                            mode="SingleSelectMaster"
+                        >
+                            <items>
+                                <!-- Define your top 5 alerts here -->
+                                <StandardListItem title="Order with id 56 is blocked with type sales" />
+                                <StandardListItem title="Order with id 56 is blocked with type sales" />
+                                <StandardListItem title="Order with id 56 is blocked with type sales" />
+                                <StandardListItem title="Alert 4" />
+                                <StandardListItem title="Alert 5" />
+                            </items>
+                        </List>
+                        <!-- View All Button -->
+                        <Button
+                            text="View All"
+                            class="view_all_btn"
+                            press="onPressViewAll"
+                        />
+                    </VBox>
+                </items>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

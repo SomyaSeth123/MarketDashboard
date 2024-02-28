@@ -17,11 +17,11 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/catalog/",
+        "uri": "/v2/odata/v4/catalog/",
         "type": "OData",
         "settings": {
           "annotations": [],
-          "odataVersion": "4.0"
+          "odataVersion": "2.0"
         }
       }
     }
@@ -68,8 +68,8 @@
           "bundleName": "com.ibm.assessment.orderdetails.i18n.i18n"
         }
       },
-      "mainModel": {
-        "type": "sap.ui.model.odata.v4.ODataModel",
+      "": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
         "dataSource": "mainService",
         "preload": true,
         "settings": {

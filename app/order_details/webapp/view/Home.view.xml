@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.ibm.assesment.orderdetails.controller.Home"
+    controllerName="com.ibm.assessment.orderdetails.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -48,9 +48,7 @@
                                                     press="onClickTile($event, 'sales', 'Completed')"
                                                     frameType="OneByHalf"
                                                 >
-                                                    <TileContent
-                                                        footer="{i18n>Total-10}"
-                                                    />
+                                                    <TileContent footer="{i18n>Total: ${salesOrderCount>/completed}}" />
                                                 </GenericTile>
                                                 <GenericTile
                                                     class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"

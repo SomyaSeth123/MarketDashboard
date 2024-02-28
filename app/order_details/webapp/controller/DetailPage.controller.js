@@ -3,8 +3,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "jquery",
     "sap/m/MessageToast",
-    "sap/ui/model/odata/v4/ODataModel",
-    // "../../../../srv/dataModel_srv",
+    "sap/ui/model/odata/v2/ODataModel",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -34,38 +33,72 @@ sap.ui.define([
                 let oTable = ''
                 let salesOrderTable = this.getView().byId("salesOrderTable");
                 let purchaseOrderTable = this.getView().byId("purchaseOrderTable");
+                const orderModel = this.getOwnerComponent().getModel();
 
                 if (this.order_type == 'sales') {
                     oTable = salesOrderTable
+
+                    orderModel.read('/SalesOrder', {
+                        success: function(oData) {
+                            console.log("Data from SalesOrder entity set:", oData);
+                            this.filterData(oData.results, activeKey, oTable, oTabContainer)
+                        }.bind(this),
+                        error: function(oError) {
+                            console.error("Error reading data from SalesOrder entity set:", oError);
+                        }.bind(this)
+                    });    
                 }
                 else {
                     oTable = purchaseOrderTable
+
+                    orderModel.read('/PurchaseOrder', {
+                        success: function(oData) {
+                            console.log("Data from Purchase Order entity set:", oData);
+                            this.filterData(oData.results, activeKey, oTable, oTabContainer)
+                        }.bind(this),
+                        error: function(oError) {
+                            console.error("Error reading data from purchase order entity set:", oError);
+                        }.bind(this)
+                    });
+    
                 }
                 let oTabContainer = this.byId("detailpage_tab_cont");
 
                 let activeKey = this.status;
-                let oBinding = oTable.getBinding("items");
-                let oFilter;
-
+            },
+            filterData: function(data, activeKey, oTable, oTabContainer){
+                let filteredData;
                 switch (activeKey) {
                     case "All":
-                        oBinding.filter([]);
+                        this.getView().setModel(new JSONModel(data), "filteredOrder");
                         break;
                     case "Completed":
-                        oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "Completed");
-                        oBinding.filter([oFilter]);
+                        filteredData = data.filter(function(item) {
+                            return item.status === "Completed";
+                        });
+                
+                        this.getView().setModel(new JSONModel(filteredData), "filteredOrder");
                         break;
                     case "Inprogress":
-                        oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "Inprogress");
-                        oBinding.filter([oFilter]);
+                        filteredData = data.filter(function(item) {
+                            return item.status === "Inprogress";
+                        });
+                
+                        this.getView().setModel(new JSONModel(filteredData), "filteredOrder");
                         break;
                     case "Blocked":
-                        oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.EQ, "Blocked");
-                        oBinding.filter([oFilter]);
+                        filteredData = data.filter(function(item) {
+                            return item.status === "Blocked";
+                        });
+                
+                        this.getView().setModel(new JSONModel(filteredData), "filteredOrder");
                         break;
                     default:
                         break;
                 }
+
+                console.log('filteredData', filteredData);
+
                 var oTabItems = oTabContainer.getItems();
 
                 for (var i = 0; i < oTabItems.length; i++) {
@@ -79,9 +112,6 @@ sap.ui.define([
                     }
                 }
             },
-            onAfterRendering: function() {
-                console.log("on after rendering called", this.getOwnerComponent().getModel('mainModel'));
-            },
 
             onTabSelect: function (oEvent) {
                 let oTabItem = oEvent.getParameter("item");
@@ -93,7 +123,7 @@ sap.ui.define([
                 }
             },
             
-            onHomePress: function() {
+            onPressHome: function() {
                 // Navigate to the home page
                 this.getOwnerComponent().getRouter().navTo("home");
             },
@@ -105,6 +135,9 @@ sap.ui.define([
                     this.getView().addDependent(oDialog);
                 }
                 oDialog.open();
+                // const oModel = this.getOwnerComponent().getModel();
+                // console.log("oModel", oModel);
+                // this.createEntity('data', 'entity');
             },
             onCancel: function () {
                 var oDialog = this.getView().byId("createDialog");
@@ -122,36 +155,36 @@ sap.ui.define([
 
                 var csvRow = inputValue1 + "," + inputValue2 + "," + inputValue3 + "," + inputValue4 + "\n";
 
-                const oList = this._oTable;
-                const oBinding = oList.getBinding("items");
-                const oContext = oBinding.create({
-                    "id": this.byId("id_").getValue(),
-                    "salesOrderNumber": this.byId("input1").getValue(),
-                    "salesOrderType": this.byId("input2").getValue(),
-                    "company": this.byId("input3").getValue(),
-                    "status": this.byId("input4").getValue()
-                });
-                oContext.created()
-                    .then(() => {
-                        this.getView().byId("createDialog").close();
-                        // dataModel_srv.createEntity('dataaaa','typee')
-                    });
+                // const oList = this._oTable;
+                // const oBinding = oList.getBinding("items");
+                // const oContext = oBinding.create({
+                //     "id": this.byId("id_").getValue(),
+                //     "salesOrderNumber": this.byId("input1").getValue(),
+                //     "salesOrderType": this.byId("input2").getValue(),
+                //     "company": this.byId("input3").getValue(),
+                //     "status": this.byId("input4").getValue()
+                // });
+                // oContext.created()
+                //     .then(() => {
+                //         this.getView().byId("createDialog").close();
+                //         // dataModel_srv.createEntity('dataaaa','typee')
+                //     });
             },
-            onDelete: function () {
-                var oSelected = this.byId("salesOrderTable").getSelectedItem();
-                if (oSelected) {
-                    var oSalesOrder = oSelected.getBindingContext("mainModel").getObject().id;
+            // onDelete: function () {
+            //     var oSelected = this.byId("salesOrderTable").getSelectedItem();
+            //     if (oSelected) {
+            //         var oSalesOrder = oSelected.getBindingContext("mainModel").getObject().id;
 
-                    oSelected.getBindingContext("mainModel").delete("$auto").then(function () {
-                        // MessageToast.show(oSalesOrder + " SuccessFully Deleted");
-                    }.bind(this),
-                        function (oError) {
-                            // MessageToast.show("Deletion Error: ",oError);
-                        });
-                } else {
-                    // MessageToast.show("Please Select a Row to Delete");
-                }
+            //         oSelected.getBindingContext("mainModel").delete("$auto").then(function () {
+            //             // MessageToast.show(oSalesOrder + " SuccessFully Deleted");
+            //         }.bind(this),
+            //             function (oError) {
+            //                 // MessageToast.show("Deletion Error: ",oError);
+            //             });
+            //     } else {
+            //         // MessageToast.show("Please Select a Row to Delete");
+            //     }
 
-            },
+            // },
         });
     });

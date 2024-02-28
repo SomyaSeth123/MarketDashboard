@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>simple|
 |**Service Type**<br>Local Cap|
-|**Service URL**<br>http://localhost:4004/odata/v4/catalog/
+|**Service URL**<br>http://localhost:4004/odata/v2/catalog/
 |**Module Name**<br>order_details|
 |**Application Title**<br>Order Details|
 |**Namespace**<br>com.ibm.assessment|

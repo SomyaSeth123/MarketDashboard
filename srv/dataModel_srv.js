@@ -35,7 +35,8 @@ const executeQuery = async (sql, params) => {
 };
 
 // Create entity
-MarketDashboardServices.createEntity = async (data, type) => {
+createEntity = async (data, type) => {
+    console.log("create entity called");
     // if(type == 'sales'){
     //     const sql = 'INSERT INTO MyTable (column1, column2, ...) VALUES (?, ?, ...)';
     //     const params = [data.column1, data.column2, ...];
@@ -49,7 +50,7 @@ MarketDashboardServices.createEntity = async (data, type) => {
 };
 
 // Read entity
-MarketDashboardServices.readEntity = async (id, type) => {
+readEntity = async (id, type) => {
     // if(type == 'sales'){
     //     const sql = 'SELECT * FROM MyTable WHERE id = ?';
     //     const params = [id];
@@ -77,3 +78,5 @@ MarketDashboardServices.readEntity = async (id, type) => {
 // };
 
 module.exports = MarketDashboardServices
+
+

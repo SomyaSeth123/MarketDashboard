@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.ibm.assesment.orderdetails.controller.DetailPage"
+    controllerName="com.ibm.assessment.orderdetails.controller.DetailPage"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
@@ -40,8 +40,8 @@
             <Table
                 id="salesOrderTable"
                 inset="false"
+                items="{filteredOrder>/}"
                 visible="{viewModel>/isSales}"
-                items="{mainModel>/SalesOrder}"
             >
                 <columns>
                     <Column width="12em">
@@ -66,11 +66,11 @@
                 <items>
                     <ColumnListItem vAlign="Middle">
                         <cells>
-                            <Text text="{mainModel>id}" />
-                            <Text text="{mainModel>salesOrderNumber}" />
-                            <Text text="{mainModel>salesOrderType}" />
-                            <Text text="{mainModel>company}" />
-                            <Text text="{mainModel>status}" />
+                            <Text text="{filteredOrder>id}" />
+                            <Text text="{filteredOrder>salesOrderNumber}" />
+                            <Text text="{filteredOrder>salesOrderType}" />
+                            <Text text="{filteredOrder>company}" />
+                            <Text text="{filteredOrder>status}" />
                             <VBox class="edit_del_btns">
                                 <Button text="Edit" />
                                 <Button
@@ -86,7 +86,7 @@
                 id="purchaseOrderTable"
                 inset="false"
                 visible="{= ${viewModel>/isSales} === false}"
-                items="{mainModel>/PurchaseOrder}"
+                items="{filteredOrder>/}"
             >
                 <columns>
                     <Column width="12em">
@@ -111,11 +111,11 @@
                 <items>
                     <ColumnListItem vAlign="Middle">
                         <cells>
-                            <Text text="{mainModel>id}" />
-                            <Text text="{mainModel>purchaseOrderNumber}" />
-                            <Text text="{mainModel>purchaseOrderType}" />
-                            <Text text="{mainModel>company}" />
-                            <Text text="{mainModel>status}" />
+                            <Text text="{filteredOrder>id}" />
+                            <Text text="{filteredOrder>purchaseOrderNumber}" />
+                            <Text text="{filteredOrder>purchaseOrderType}" />
+                            <Text text="{filteredOrder>company}" />
+                            <Text text="{filteredOrder>status}" />
                             <VBox class="edit_del_btns">
                                 <Button text="Edit" />
                                 <Button

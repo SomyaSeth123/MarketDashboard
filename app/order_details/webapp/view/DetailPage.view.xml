@@ -4,6 +4,7 @@
     displayBlock="true"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="detailPage"
@@ -13,7 +14,10 @@
             <Bar>
                 <contentLeft>
                     <!-- Home button added here -->
-                    <Button icon="sap-icon://home" press="onPressHome" />
+                    <Button
+                        icon="sap-icon://home"
+                        press="onPressHome"
+                    />
                 </contentLeft>
                 <contentMiddle>
                     <Title
@@ -24,24 +28,65 @@
             </Bar>
         </customHeader>
         <content>
-            <Button
-                text="{i18n>CreateOrder}"
-                class="create_order_btn"
-                press="createOrder"
-            />
-            <TabContainer class="detail_page_tab_cont" id="detailpage_tab_cont">
+            <FlexBox class="edit_del_btns">
+                <Button
+                    text="{i18n>CreateOrder}"
+                    press="createOrder"
+                    id="create_btn"
+                />
+                <Button
+                    text="{i18n>Edit}"
+                    id="edit_btn"
+                    press="onEdit"
+                />
+                <Button
+                    text="{i18n>Delete}"
+                    id="delete_btn"
+                    enabled="false"
+                    press="onDelete"
+                />
+                <Button
+                    text="{i18n>Save}"
+                    id="save_btn"
+                    press="onSave"
+                    visible="false"
+                />
+                <Button
+                    text="{i18n>Cancel}"
+                    id="cancel_btn"
+                    press="onCancel"
+                    visible="false"
+                />
+            </FlexBox>
+            <TabContainer
+                class="detail_page_tab_cont"
+                id="detailpage_tab_cont"
+            >
                 <items>
-                    <TabContainerItem name="{i18n>All}" key="All"></TabContainerItem>
-                    <TabContainerItem name="{i18n>Completed}" key="Completed"></TabContainerItem>
-                    <TabContainerItem name="{i18n>Inprogress}" key="Inprogress"></TabContainerItem>
-                    <TabContainerItem name="{i18n>Blocked}" key="Blocked"></TabContainerItem>
+                    <TabContainerItem
+                        name="{i18n>All}"
+                        key="All"
+                    />
+                    <TabContainerItem
+                        name="{i18n>Completed}"
+                        key="Completed"
+                    />
+                    <TabContainerItem
+                        name="{i18n>Inprogress}"
+                        key="Inprogress"
+                    />
+                    <TabContainerItem
+                        name="{i18n>Blocked}"
+                        key="Blocked"
+                    />
                 </items>
             </TabContainer>
             <Table
                 id="salesOrderTable"
-                inset="false"
                 items="{filteredOrder>/}"
                 visible="{viewModel>/isSales}"
+                mode="MultiSelect"
+                selectionChange="onSelectionChange"
             >
                 <columns>
                     <Column width="12em">
@@ -59,9 +104,6 @@
                     <Column>
                         <Text text="{i18n>Status}" />
                     </Column>
-                    <Column>
-                        <Text text="{i18n>Actions}" />
-                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem vAlign="Middle">
@@ -71,13 +113,6 @@
                             <Text text="{filteredOrder>salesOrderType}" />
                             <Text text="{filteredOrder>company}" />
                             <Text text="{filteredOrder>status}" />
-                            <VBox class="edit_del_btns">
-                                <Button text="Edit" />
-                                <Button
-                                    text="{i18n>Delete}"
-                                    press="onDelete"
-                                />
-                            </VBox>
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -87,6 +122,8 @@
                 inset="false"
                 visible="{= ${viewModel>/isSales} === false}"
                 items="{filteredOrder>/}"
+                mode="MultiSelect"
+                selectionChange="onSelectionChange"
             >
                 <columns>
                     <Column width="12em">
@@ -104,9 +141,9 @@
                     <Column>
                         <Text text="{i18n>Status}" />
                     </Column>
-                    <Column>
+                    <!-- <Column>
                         <Text text="{i18n>Actions}" />
-                    </Column>
+                    </Column> -->
                 </columns>
                 <items>
                     <ColumnListItem vAlign="Middle">
@@ -116,13 +153,6 @@
                             <Text text="{filteredOrder>purchaseOrderType}" />
                             <Text text="{filteredOrder>company}" />
                             <Text text="{filteredOrder>status}" />
-                            <VBox class="edit_del_btns">
-                                <Button text="Edit" />
-                                <Button
-                                    text="Delete"
-                                    press="onDelete"
-                                />
-                            </VBox>
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -135,28 +165,33 @@
                 <VBox class="create_dialog_input_fields">
                     <Label text="Id" />
                     <Input
-                        placeholder="Enter Sales Order Number"
+                        placeholder="Enter id"
                         id="id_"
+                        valueStateText="Id must not be empty and no special characters allowed."
                     />
-                    <Label text="Sales Order Number" />
+                    <Label text="Order Number" />
                     <Input
-                        placeholder="Enter Sales Order Number"
+                        placeholder="Enter order number"
                         id="input1"
+                        valueStateText="Sales order number must not be empty and no special characters allowed."
                     />
-                    <Label text="Sales Order Type" />
+                    <Label text="Order Type" />
                     <Input
-                        placeholder="Enter Sales Order Type"
+                        placeholder="Enter order type"
                         id="input2"
+                        valueStateText="Sales order type must not be empty and no special characters allowed."
                     />
                     <Label text="Company" />
                     <Input
                         placeholder="Enter Company"
                         id="input3"
+                        valueStateText="Company must not be empty and no special characters allowed."
                     />
                     <Label text="Status" />
                     <Input
                         placeholder="Enter Status"
                         id="input4"
+                        valueStateText="Status must not be empty and no special characters allowed."
                     />
                     <VBox class="dialog_btns">
                         <Button
@@ -165,7 +200,7 @@
                         />
                         <Button
                             text="Cancel"
-                            press="onCancel"
+                            press="cancelDialog"
                         />
                     </VBox>
                 </VBox>

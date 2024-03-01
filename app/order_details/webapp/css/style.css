@@ -106,6 +106,7 @@
 .edit_del_btns{
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
 }
 .edit_del_btns>*{
     margin-right: 1rem;

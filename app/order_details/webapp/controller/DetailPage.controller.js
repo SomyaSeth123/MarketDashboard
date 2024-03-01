@@ -237,8 +237,8 @@ sap.ui.define([
 
             onChange: function (oEvent) {
                 let oInput = oEvent.getSource();
-                let sPath = oInput.getBindingContext().getPath();
-                let oData = oInput.getModel().getProperty(sPath);
+                let oBindingContext = oInput.getBindingContext('filteredOrder');
+                let oData = oBindingContext.getObject();
 
                 oData[oInput.getBindingInfo("value").binding.getPath()] = oEvent.getParameter("value");
                 let iIndex = this.aEditedData.findIndex(function (item) {

@@ -119,9 +119,9 @@ sap.ui.define([
                     }
                 }
 
-                if(this.order_type == 'sales'){
+                if (this.order_type == 'sales') {
                     this.oReadOnlyTemplate = new sap.m.ColumnListItem({
-                        cells:[
+                        cells: [
                             new sap.m.Text({
                                 text: "{filteredOrder>id}"
                             }),
@@ -140,9 +140,9 @@ sap.ui.define([
                         ]
                     })
                 }
-                else{
+                else {
                     this.oReadOnlyTemplate = new sap.m.ColumnListItem({
-                        cells:[
+                        cells: [
                             new sap.m.Text({
                                 text: "{filteredOrder>id}"
                             }),
@@ -182,7 +182,7 @@ sap.ui.define([
                 this.byId("cancel_btn").setVisible(true);
                 this.byId("delete_btn").setEnabled(false);
                 this.byId("create_btn").setEnabled(false);
-                if(this.order_type == 'sales'){
+                if (this.order_type == 'sales') {
                     this.oEditableTemplate = new sap.m.ColumnListItem({
                         cells: [
                             new sap.m.Text({
@@ -207,26 +207,26 @@ sap.ui.define([
                         ]
                     });
                 }
-                else{
+                else {
                     this.oEditableTemplate = new sap.m.ColumnListItem({
                         cells: [
                             new sap.m.Text({
-                                text: "{id}",
+                                text: "{filteredOrder>id}",
                             }),
                             new sap.m.Input({
-                                value: "{purchaseOrderNumber}",
+                                value: "{filteredOrder>purchaseOrderNumber}",
                                 liveChange: this.onChange.bind(this)
                             }),
                             new sap.m.Input({
-                                value: "{purchaseOrderType}",
+                                value: "{filteredOrder>purchaseOrderType}",
                                 liveChange: this.onChange.bind(this)
                             }),
                             new sap.m.Input({
-                                value: "{company}",
+                                value: "{filteredOrder>company}",
                                 liveChange: this.onChange.bind(this)
                             }),
                             new sap.m.Input({
-                                value: "{status}",
+                                value: "{filteredOrder>status}",
                                 liveChange: this.onChange.bind(this)
                             })
                         ]
@@ -247,7 +247,7 @@ sap.ui.define([
 
                 if (iIndex === -1) {
                     this.aEditedData.push(oData);
-                } else { 
+                } else {
                     this.aEditedData[iIndex] = oData;
                 }
             },
@@ -262,41 +262,41 @@ sap.ui.define([
                 this.aEditedData.forEach(function (oEditedItem) {
                     let oModel = that.getOwnerComponent().getModel()
                     let entityType = ''
-                    if(that.order_type == 'sales'){
+                    if (that.order_type == 'sales') {
                         entityType = 'SalesOrder'
                     }
-                    else{
+                    else {
                         entityType = 'PurchaseOrder'
                     }
-                    oModel.update("/"+entityType+"('" + oEditedItem.id + "')", oEditedItem, {
-                        success: function () {                           
+                    oModel.update("/" + entityType + "('" + oEditedItem.id + "')", oEditedItem, {
+                        success: function () {
                         },
-                        error: function () {       
+                        error: function () {
                         }
                     });
                 });
-            
+
                 this.aEditedData = [];
                 this.rebindTable(this.oReadOnlyTemplate, "Navigation");
             },
 
-            onCancel: function() {
+            onCancel: function () {
                 this.byId("cancel_btn").setVisible(false);
                 this.byId("save_btn").setVisible(false);
                 this.byId("edit_btn").setVisible(true);
                 this.byId("delete_btn").setEnabled(false);
                 this.byId("create_btn").setEnabled(true);
                 this.rebindTable(this.oReadOnlyTemplate, "Navigation");
-                
+
                 let entityType = ''
-                if(this.order_type == 'sales'){
+                if (this.order_type == 'sales') {
                     entityType = 'SalesOrder'
                 }
-                else{
+                else {
                     entityType = 'PurchaseOrder'
                 }
                 let oModel = this.getOwnerComponent().getModel()
-                oModel.read('/'+entityType, {
+                oModel.read('/' + entityType, {
                     success: function (oData) {
                         this.filterData(oData.results, this.status, this.oTable, this.oTabContainer)
                     }.bind(this),
@@ -334,35 +334,35 @@ sap.ui.define([
                 oDialog.open();
             },
 
-            onDelete: function() {
-                this.allSelectedItems.forEach(function(selectedItem) {
+            onDelete: function () {
+                this.allSelectedItems.forEach(function (selectedItem) {
                     let oBindingContext = selectedItem.getBindingContext("filteredOrder");
                     if (oBindingContext) {
                         let oData = oBindingContext.getObject();
                         let sId = oData.id;
 
-                        let orderModel =  this.getOwnerComponent().getModel()
+                        let orderModel = this.getOwnerComponent().getModel()
                         let entityType = ''
-                        if(this.order_type == 'sales'){
+                        if (this.order_type == 'sales') {
                             entityType = 'SalesOrder'
                         }
-                        else{
+                        else {
                             entityType = 'PurchaseOrder'
                         }
-                        orderModel.remove("/"+entityType + "('" + sId + "')", {
-                            success: function() {
+                        orderModel.remove("/" + entityType + "('" + sId + "')", {
+                            success: function () {
                                 console.log("Successfully deleted", sId);
                                 this.byId('create_btn').setEnabled(true)
                                 this.byId('delete_btn').setEnabled(false)
                             }.bind(this),
-                            error: function(error) {
+                            error: function (error) {
                                 console.error("Error while deleting", error);
                             }.bind(this)
                         });
-                        orderModel.read('/'+entityType, {
+                        orderModel.read('/' + entityType, {
                             success: function (oData) {
                                 this.filterData(oData.results, this.status, this.oTable, this.oTabContainer)
-    
+
                             }.bind(this),
                             error: function (oError) {
                                 console.error("Error reading data from SalesOrder entity set:", oError);
@@ -370,53 +370,66 @@ sap.ui.define([
                         });
                     }
                 }.bind(this));
-            
+
                 this.rebindTable(this.oReadOnlyTemplate, "Navigation");
+                this.byId('edit_btn').setEnabled(true)
             },
 
             onSubmit: function () {
+                let id = this.byId("id_").getValue()
+                let orderNumber = this.byId("input1").getValue()
+                let orderType = this.byId("input2").getValue()
+                let company = this.byId("input3").getValue()
+                let status = this.byId("input4").getValue()
                 let data = {
-                    "id": this.byId("id_").getValue(),
-                    "company": this.byId("input3").getValue(),
-                    "status": this.byId("input4").getValue()
+                    "id": id,
+                    "company": company,
+                    "status": status
                 }
                 let entityType = ''
-                if(this.order_type == 'sales'){
+                if (this.order_type == 'sales') {
                     entityType = 'SalesOrder'
-                    data["salesOrderNumber"] = this.byId("input1").getValue(),
-                    data["salesOrderType"] = this.byId("input2").getValue()
+                    data["salesOrderNumber"] = orderNumber,
+                    data["salesOrderType"] = orderType
                 }
-                else{
+                else {
                     entityType = 'PurchaseOrder'
-                    data["purchaseOrderNumber"] = this.byId("input1").getValue(),
-                    data["purchaseOrderType"] = this.byId("input2").getValue()
+                    data["purchaseOrderNumber"] = orderNumber,
+                    data["purchaseOrderType"] = orderType
                 }
                 let oModel = this.getOwnerComponent().getModel()
-                
-                oModel.create('/'+entityType, data, {
-                    success: function (oData) {
-                        console.log("after creating entry in SalesOrder", oData);
-                        this.getView().byId("createDialog").close();
-                    }.bind(this),
-                    error: function (oError) {
-                        console.log("error occured while creating entry in SalesOrder", oError);
-                    }.bind(this)
-                })
-                oModel.read('/'+entityType, {
-                    success: function (oData) {
-                        this.filterData(oData.results, this.status, this.oTable, this.oTabContainer)
-                    }.bind(this),
-                    error: function (oError) {
-                        console.error("Error reading data from SalesOrder entity set:", oError);
-                    }.bind(this)
-                });
-                this.byId("id_").setValue(null),
-                this.byId("input1").setValue(null),
-                this.byId("input2").setValue(null)
-                this.byId("input3").setValue(null)
-                this.byId("input4").setValue(null)
+
+                let oRegExp = /^[a-zA-Z0-9\s]*$/;
+
+                if (!oRegExp.test(id) || !oRegExp.test(orderNumber) || !oRegExp.test(orderType) || !oRegExp.test(company) || !oRegExp.test(status)) {
+                    sap.m.MessageToast.show("Please correct the input field before submitting.");
+                } else {
+                    oModel.create('/' + entityType, data, {
+                        success: function (oData) {
+                            console.log("after creating entry in SalesOrder", oData);
+                            this.getView().byId("createDialog").close();
+                        }.bind(this),
+                        error: function (oError) {
+                            console.log("error occured while creating entry in SalesOrder", oError);
+                        }.bind(this)
+                    })
+                    oModel.read('/' + entityType, {
+                        success: function (oData) {
+                            this.filterData(oData.results, this.status, this.oTable, this.oTabContainer)
+                        }.bind(this),
+                        error: function (oError) {
+                            console.error("Error reading data from SalesOrder entity set:", oError);
+                        }.bind(this)
+                    });
+                    this.byId("id_").setValue(null),
+                    this.byId("input1").setValue(null),
+                    this.byId("input2").setValue(null)
+                    this.byId("input3").setValue(null)
+                    this.byId("input4").setValue(null)
+                }
+
             },
-           
+
             onSelectionChange: function (oEvent) {
                 let oTable = oEvent.getSource();
                 this.allSelectedItems = oTable.getSelectedItems();
@@ -438,9 +451,28 @@ sap.ui.define([
                 }
             },
 
-            cancelDialog: function() {
+            cancelDialog: function () {
                 var oDialog = this.getView().byId("createDialog");
                 oDialog.close();
-            }
+                this.byId("id_").setValue(null),
+                    this.byId("input1").setValue(null),
+                    this.byId("input2").setValue(null)
+                this.byId("input3").setValue(null)
+                this.byId("input4").setValue(null)
+            },
+
+            onInputChange: function (oEvent) {
+                let oInput = oEvent.getSource();
+                let sValue = oInput.getValue();
+                let oRegExp = /^[a-zA-Z0-9\s]*$/;
+
+                if (!oRegExp.test(sValue)) {
+                    oInput.setValueState("Error");
+                    oInput.setValueStateText("Special characters are not allowed.");
+                } else {
+                    oInput.setValueState("None");
+                    oInput.setValueStateText("");
+                }
+            },
         });
     });

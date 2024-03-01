@@ -167,31 +167,31 @@
                     <Input
                         placeholder="Enter id"
                         id="id_"
-                        valueStateText="Id must not be empty and no special characters allowed."
+                        liveChange="onInputChange"
                     />
                     <Label text="Order Number" />
                     <Input
                         placeholder="Enter order number"
                         id="input1"
-                        valueStateText="Sales order number must not be empty and no special characters allowed."
+                        liveChange="onInputChange"
                     />
                     <Label text="Order Type" />
                     <Input
                         placeholder="Enter order type"
                         id="input2"
-                        valueStateText="Sales order type must not be empty and no special characters allowed."
+                        liveChange="onInputChange"
                     />
                     <Label text="Company" />
                     <Input
                         placeholder="Enter Company"
                         id="input3"
-                        valueStateText="Company must not be empty and no special characters allowed."
+                        liveChange="onInputChange"
                     />
                     <Label text="Status" />
                     <Input
                         placeholder="Enter Status"
                         id="input4"
-                        valueStateText="Status must not be empty and no special characters allowed."
+                        liveChange="onInputChange"
                     />
                     <VBox class="dialog_btns">
                         <Button
